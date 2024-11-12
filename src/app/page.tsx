@@ -42,6 +42,7 @@ export default function Home() {
   const startTimeRef = useRef<string>(new Date().toISOString());
   const [isConnected, setIsConnected] = useState(false);
   const [canPushToTalk, setCanPushToTalk] = useState(false);
+  
 
   /**
    * Connect to conversation:
@@ -166,6 +167,19 @@ export default function Home() {
       }
     };
 
+    const SoundWave = () => {
+      return (
+        <div className="flex items-center gap-1 h-5">      
+          <div className="bars-container">
+            <div className="bar" />
+            <div className="bar" />
+            <div className="bar" />
+            <div className="bar" />
+            <div className="bar" />
+          </div>
+        </div>
+      );
+    };
 
 
   return (
@@ -233,7 +247,17 @@ export default function Home() {
                 text-white px-10 py-7 text-xl font-medium rounded-full transition-all duration-300 
                 hover:scale-105 hover:shadow-lg shadow-md"              
             >
-              {isConnected ? 'End conversation' : 'Start conversation'}
+            
+            <div className="w-full flex flex-col items-center justify-center gap-1">
+              {!isConnected ? (
+                "Start conversation"
+              ) : (
+                <>
+                  <SoundWave />
+                  <span className="text-xs font-normal opacity-90">Stop conversation</span>
+                </>
+              )}
+            </div>            
             </Button>
             
             <p className="text-base text-gray-500">
