@@ -150,7 +150,7 @@ export default function Home() {
   
     const playAudio = () => {
       if (!audioRef.current) {
-        audioRef.current = new Audio('/welcome.mp3');
+        audioRef.current = new Audio('/Shimmer_tts-1-hd_1x_2024-11-12T01_25_15-556Z.mp3');
         audioRef.current.onended = () => setIsPlaying(false);
       }
       
