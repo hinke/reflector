@@ -73,7 +73,7 @@ export default function Home() {
     client.sendUserMessageContent([
       {
         type: `input_text`,
-        text: `Hi`,
+        text: `Hi, I'm Henrik`,
       },
     ]);
 

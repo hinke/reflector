@@ -15,7 +15,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "Resonance",
-  description: "Connect and reflect, plan or just chat",
+  description: "Weekly conversations to help you grow",
 };
 
 export default function RootLayout({
