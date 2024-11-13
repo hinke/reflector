@@ -8,23 +8,15 @@ import { RealtimeClient } from '@openai/realtime-api-beta';
 import { ItemType } from '@openai/realtime-api-beta/dist/lib/client.js';
 import { WavRecorder, WavStreamPlayer } from '../../lib/wavtools/index.js';
 import { instructions } from '../../utils/conversation_config.mjs';
-import { Play, Volume2 } from 'lucide-react';
+import { Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { UserButton } from '@clerk/nextjs';
+import { UserButton, useUser } from '@clerk/nextjs';
 
-/**
- * Type for all event logs
- */
-interface RealtimeEvent {
-  time: string;
-  source: 'client' | 'server';
-  count?: number;
-  event: { [key: string]: any };
-}
 
-export default function Home() {
+export default function Conversation() {
+  const { isLoaded, isSignedIn, user } = useUser()
 
-/**
+  /**
    * Instantiate:
    * - WavRecorder (speech input)
    * - WavStreamPlayer (speech output)
@@ -75,7 +67,7 @@ export default function Home() {
     client.sendUserMessageContent([
       {
         type: `input_text`,
-        text: `Hi, I'm Henrik`,
+        text: `Hi, I'm ${user?.firstName}`,
       },
     ]);
 
