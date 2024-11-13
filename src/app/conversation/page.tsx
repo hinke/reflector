@@ -12,9 +12,8 @@ import { Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { UserButton, useUser } from '@clerk/nextjs';
 
-
 export default function Conversation() {
-  const { isLoaded, isSignedIn, user } = useUser()
+  const { isLoaded, isSignedIn, user } = useUser();
 
   /**
    * Instantiate:
@@ -36,7 +35,6 @@ export default function Conversation() {
   const startTimeRef = useRef<string>(new Date().toISOString());
   const [isConnected, setIsConnected] = useState(false);
   const [canPushToTalk, setCanPushToTalk] = useState(false);
-  
 
   /**
    * Connect to conversation:
@@ -46,6 +44,7 @@ export default function Conversation() {
     const client = clientRef.current;
     const wavRecorder = wavRecorderRef.current;
     const wavStreamPlayer = wavStreamPlayerRef.current;
+
 
     // Set state variables
     startTimeRef.current = new Date().toISOString();
@@ -64,6 +63,11 @@ export default function Conversation() {
 
     // Connect to realtime API
     await client.connect();
+
+    if (!isLoaded || !isSignedIn) {
+      return null;
+    }
+
     client.sendUserMessageContent([
       {
         type: `input_text`,
@@ -72,7 +76,7 @@ export default function Conversation() {
     ]);
 
     await wavRecorder.record((data) => client.appendInputAudio(data.mono));
-  }, []);
+  }, [user]);
 
 
   /**
@@ -127,6 +131,7 @@ export default function Conversation() {
             24000
           );
           item.formatted.file = wavFile;
+          console.log(item.formatted.text);
         }
         setItems(items);
       });
@@ -177,7 +182,7 @@ export default function Conversation() {
       </div>
 
       <div className="absolute z-20 top-6 right-6">
-        <UserButton />
+        <UserButton showName={true} />
       </div>
 
       {/* Main Content */}

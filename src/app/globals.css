@@ -161,3 +161,8 @@ body {
     opacity: 1;
   }
 }
+
+.cl-avatarBox {
+  width: 2rem;
+  height: 2rem;
+}
