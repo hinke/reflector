@@ -190,7 +190,7 @@ export default function Conversation() {
         <div className="max-w-2xl text-center space-y-6">
           
           <p className="text-gray-600 text-xl max-w-xl mx-auto leading-relaxed">
-            Welcome, this is a voice first experience so find a quiet place and press below when you're ready.
+            Welcome, this is a voice first experience so find a quiet place and tap when you're ready
           </p>
 
           <div className="flex flex-col gap-6 items-center">
